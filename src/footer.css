@@ -1,0 +1,15 @@
+.footer-bg {
+    background-color:#96be1e;
+    color:#323c46;
+    position: absolute;
+    bottom:0px;
+    background-position-y: 0%;
+    height: auto;
+    width: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+  
+  .footer-bg p {
+    color:#323c46;
+  }
