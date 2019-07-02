@@ -1,12 +1,18 @@
 import React from 'react';
 import './App.css';
+import Header from './Header.js';
+import Footer from './Footer.js';
 
-function App() {
-  return (
-    <div className="App">
-     <h1>Tu Chef</h1>
-    </div>
-  );
-}
+class App extends React.Component {
+  render() {
+
+      return (
+        <main>
+          <Header/>
+          <Footer/>
+        </main>
+      );
+    }
+  }
 
 export default App;

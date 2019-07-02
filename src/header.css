@@ -1,0 +1,14 @@
+.navbar {
+    background-color: #323c46;
+}
+
+.navbar-expand-lg navbar-dark{
+    background-color: #323c46; 
+}
+.navbar-dark bg-dark{
+    background-color: #323c46; 
+}
+
+.bg-dark{
+    background-color: #323c46 !important;
+}
