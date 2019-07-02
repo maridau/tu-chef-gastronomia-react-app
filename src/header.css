@@ -1,4 +1,18 @@
 .navbar {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    letter-spacing: 0.2rem;
+    font-variant: small-caps;
+  }
+.navbar-nav  li a:hover {
+    color: #96be1e !important;
+  }
+
+.navbar {
     background-color: #323c46;
 }
 
@@ -12,3 +26,4 @@
 .bg-dark{
     background-color: #323c46 !important;
 }
+

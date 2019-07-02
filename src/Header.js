@@ -16,20 +16,20 @@ class Header extends React.Component {
                         <div class="navbar-collapse collapse" id="navbarsExample07">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="https://getbootstrap.com/docs/4.0/examples/navbars/#">Home <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="#home">Home <span class="nav-link"></span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="https://getbootstrap.com/docs/4.0/examples/navbars/#">Link</a>
+                                    <a class="nav-link" href="#ComoFunciona">Como funciona</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link disabled" href="https://getbootstrap.com/docs/4.0/examples/navbars/#">Disabled</a>
+                                    <a class="nav-link" href="#IngresoChef">Registro de Chef</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="http://example.com/" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                                    <a class="nav-link dropdown-toggle" href="http://example.com/" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contacto</a>
                                     <div class="dropdown-menu" aria-labelledby="dropdown07">
-                                        <a class="dropdown-item" href="https://getbootstrap.com/docs/4.0/examples/navbars/#">Action</a>
-                                        <a class="dropdown-item" href="https://getbootstrap.com/docs/4.0/examples/navbars/#">Another action</a>
-                                        <a class="dropdown-item" href="https://getbootstrap.com/docs/4.0/examples/navbars/#">Something else here</a>
+                                        <a class="dropdown-item" href="#tel">Telefono</a>
+                                        <a class="dropdown-item" href="#fb">Facebook</a>
+                                        <a class="dropdown-item" href="#ig">Instagram</a>
                                     </div>
                                 </li>
                             </ul>
@@ -39,13 +39,7 @@ class Header extends React.Component {
                         </div>
                     </div>
                 </nav>
-                <div class="jumbotron">
-                    <div class="container">
-                        <h1 class="display-3">Hello, world!</h1>
-                        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-                        <p><a class="btn btn-primary btn-lg" href="https://getbootstrap.com/docs/4.3/examples/jumbotron/#" role="button">Learn more »</a></p>
-                    </div>
-                </div>
+                
             </div>
 
         );
