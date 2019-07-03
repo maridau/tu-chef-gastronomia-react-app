@@ -6,12 +6,10 @@ class Footer extends React.Component {
 
         return (
             <footer className="footer-bg">
-                <div className="container">
                     <p className="float-right">
-                        <a href="">Subir</a>
+                        <a href="#subir">Subir</a>
                     </p>
-                    <h2></h2>
-                </div>
+                    <h2>Este es mi footer</h2>
             </footer>
         );
     }
