@@ -25,14 +25,16 @@ class App extends React.Component {
       section: 1,
       myEvent: []
     };
-    this.handleAddEventData = this.handleAddEventData.bind(this);
+    this.handleAddEventData=this.handleAddEventData.bind(this);
   }
-  handleAddEventData(eventData) {
+
+
+  handleAddEventData(newData){
     this.setState({
-        myEvent: [...this.state.myEvent, eventData]
+      myEvent:[...this.state.myEvent, newData]
     });
-    console.log(this.state.eventData);
-}
+    console.log(newData)
+  }
 
   //no olvidar volver a vaciar el evento, luego de terminar uno
   onClearEvent = () => {
@@ -53,7 +55,8 @@ class App extends React.Component {
 
   goToEventRegister = () => {
     this.setState({
-      section: 3
+      section: 3,
+      myEvent: []
     });
   }
   goToEventStep1 = () => {
@@ -123,46 +126,63 @@ class App extends React.Component {
     }
     if (this.state.section === 31) {
       return <EventStep1
-      myEvent1={this.state.myEvent}
-        goToEventStep2={this.goToEventStep2}
+      myEvent={this.state.myEvent}
+      onAddEventData={this.handleAddEventData}
+      goToEventStep2={this.goToEventStep2}
       />;
     }
     if (this.state.section === 32) {
       return <EventStep2
       myEvent={this.state.myEvent}
-        goToEventStep3={this.goToEventStep3}
+      onAddEventData={this.handleAddEventData}
+      goToEventStep3={this.goToEventStep3}
       />;
     }
     if (this.state.section === 33) {
       return <EventStep3
-        goToEventStep4={this.goToEventStep4}
+      myEvent={this.state.myEvent}
+      onAddEventData={this.handleAddEventData}
+      goToEventStep4={this.goToEventStep4}
       />;
     }
     if (this.state.section === 34) {
       return <EventStep4
-        goToEventStep5={this.goToEventStep5}
+      myEvent={this.state.myEvent}
+      onAddEventData={this.handleAddEventData}
+      goToEventStep5={this.goToEventStep5}
+      goToEventResume={this.goToEventResume}
       />;
     }
     if (this.state.section === 35) {
       return <EventStep5
-        goToEventStep6={this.goToEventStep6}
+      myEvent={this.state.myEvent}
+      onAddEventData={this.handleAddEventData}
+      goToEventStep6={this.goToEventStep6}
       />;
     }
 
     if (this.state.section === 36) {
       return <EventStep6
-        goToEventStep7={this.goToEventStep7}
+      myEvent={this.state.myEvent}
+      onAddEventData={this.handleAddEventData}
+      goToEventStep7={this.goToEventStep7}
       />;
     }
 
     if (this.state.section === 37) {
       return <EventStep7
-        goToEventResume={this.goToEventResume}
+      myEvent={this.state.myEvent}
+      onAddEventData={this.handleAddEventData}
+      goToEventResume={this.goToEventResume}
       />;
     }
 
     if (this.state.section === 38) {
-      return <EventResume />;
+      return <EventResume 
+      myEvent={this.state.myEvent}
+      onAddEventData={this.handleAddEventData}
+      />;
+
     }
 
     if (this.state.section === 4) {
@@ -184,11 +204,6 @@ class App extends React.Component {
           goToRegisterChef={this.goToRegisterChef}
           goToContactUs={this.goToContactUs}
         />
-        <ul>
-          {this.state.myEvent.map(item => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
         <React.Fragment>
           <CssBaseline />
           <Container maxWidth="sm" style={{ height: '100vh' }} >
