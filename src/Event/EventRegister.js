@@ -7,15 +7,32 @@ class EventRegister extends React.Component {
         super();
         this.state = {
         };
+        this.handleInput = this.handleInput.bind(this);
+        this.handleSubmit=this.handleSubmit.bind(this);
     }
 
-    render() {
+    handleInput(e) {
+        const { name, value} = e.target;
+        this.setState({[name]: value})
+        
+    }
 
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.onAddEventData(this.state);
+        this.setState.handleInput = ''
+    }
+   
+    render() {
+        console.log(this.props.myEvent)
         return (
             <div className="container">
                 <h1>Registro de Evento</h1>
                 <h3>¿Qué vas a festejar? ¡Contanos!</h3>
-                <button type="button" class="btn btn-primary" onClick={this.props.goToEventStep1}>Comenzar</button>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" onChange={this.handleInput} name="eventName"></input>
+                </form>
+                <button type="submit" className="btn btn-primary" onClick={this.props.goToEventStep1}>Comenzar</button>
             </div>
 
         );

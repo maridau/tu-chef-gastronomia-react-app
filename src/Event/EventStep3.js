@@ -22,7 +22,7 @@ class EventStep3 extends React.Component {
                     <li>Mexicana</li>
                     <li>Dejarme sorprender</li>
                 </ul>
-                <button type="button" class="btn btn-primary" onClick={this.props.goToEventStep4}>Siguiente</button>
+                <button type="button" className="btn btn-primary" onClick={this.props.goToEventStep4}>Siguiente</button>
             </div>
 
         );

@@ -16,7 +16,7 @@ class Header extends React.Component {
                         <div className="navbar-collapse collapse" id="navbarsExample07">
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item active">
-                                    <a className="nav-link" href="#home" onClick={this.props.goToHome}>Home <span class="nav-link"></span></a>
+                                    <a className="nav-link" href="#home" onClick={this.props.goToHome}>Home <span className="nav-link"></span></a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="#EventRegister" onClick={this.props.goToEventRegister}>Tu evento</a>

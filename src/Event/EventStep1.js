@@ -9,12 +9,13 @@ class EventStep1 extends React.Component {
         };
     }
 
-    render() {
 
+    render() {
+    console.log(this.props.myEvent1)
         return (
             <div className="container">
                 <h1>¿Cuántas personas van a ser?</h1>
-                <button type="button" class="btn btn-primary" onClick={this.props.goToEventStep2}>Siguiente</button>
+                <button type="button" className="btn btn-primary" onClick={this.props.goToEventStep2}>Siguiente</button>
             </div>
 
         );

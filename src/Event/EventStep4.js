@@ -14,7 +14,7 @@ class EventStep4 extends React.Component {
         return (
             <div className="container">
                 <h1>Seleccionar fecha</h1>
-                <button type="button" class="btn btn-primary" onClick={this.props.goToEventStep5}>Siguiente</button>
+                <button type="button" className="btn btn-primary" onClick={this.props.goToEventStep5}>Siguiente</button>
             </div>
 
         );

@@ -14,7 +14,7 @@ class EventResume extends React.Component {
         return (
             <div className="container">
                 <h1>Resumen del evento registrado</h1>
-                <button type="button" class="btn btn-primary">Siguiente</button>
+                <button type="button" className="btn btn-primary">Siguiente</button>
             </div>
         );
     }
