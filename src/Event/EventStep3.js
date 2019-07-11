@@ -76,7 +76,7 @@ class EventStep3 extends React.Component {
             },
             checked: {},
         })(props => <Radio color="default" {...props} />);
-
+        
         return (
             <form className={this.props.classes.container} noValidate autoComplete="off">
                 <Paper className={this.props.classes.paper}>

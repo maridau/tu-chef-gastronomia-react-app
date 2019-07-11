@@ -38,7 +38,7 @@ class EventStep7 extends React.Component {
     render() {
 
         return (
-            <form>
+            <form className={this.props.classes.container} noValidate autoComplete="off">
                 <Paper className={this.props.classes.paper}>
                     <Typography variant="h5">
                         Contact information
@@ -70,7 +70,7 @@ class EventStep7 extends React.Component {
                         //onChange={this.handleContactChange('phone')}
                         margin="normal"
                     />
-        <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.handleSubmit}>
+                    <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.handleSubmit}>
                         Guardar
           </Button>
                     <Button variant="contained" className={this.props.classes.button} onClick={this.props.goToEventResume}>

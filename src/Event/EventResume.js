@@ -14,11 +14,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
-const chef = [
-    "assets/chef.jpg",
-];
 
-const styles = muiBaseTheme => ({
+const styles = theme => ({
+    palette: {
+        primary: '#96be1e', //verde
+        secondary:'#323c46', //gris fuerte
+      },
     card: {
         maxWidth: 400,
         margin: "auto",
@@ -33,10 +34,10 @@ const styles = muiBaseTheme => ({
     },
     content: {
         textAlign: "left",
-        padding: muiBaseTheme.spacing.unit * 3
+        padding: theme.spacing.unit * 3
     },
     divider: {
-        margin: `${muiBaseTheme.spacing.unit * 3}px 0`
+        margin: `${theme.spacing.unit * 3}px 0`
     },
     heading: {
         fontWeight: "bold"
@@ -51,13 +52,24 @@ const styles = muiBaseTheme => ({
         display: "inline-block",
         border: "2px solid #96be1e",
         "&:not(:first-of-type)": {
-            marginLeft: -muiBaseTheme.spacing.unit
+            marginLeft: -theme.spacing.unit
         }
     }
 });
 
 class EventResume extends React.Component {
-
+    constructor() {
+        super();
+        this.state = {
+            chef: [
+                { id:1, picture: "assets/chef1.png", name: 'Julio Gonzalez' },
+                { id:2, picture: "assets/chef2.png", name: 'Pedro Rivero' },
+                { id:3, picture: "assets/chef3.png", name: 'Santiago Lima' },
+                { id:4, picture: "assets/chef4.png", name: 'Julio Rodriguez' },
+                { id:5, picture: "assets/chef5.png", name: 'Melissa Perez' }
+            ],
+        };
+    }
     render() {
         const { classes } = this.props;
 
@@ -65,13 +77,7 @@ class EventResume extends React.Component {
 
         return (
             <div>
-                <Typography
-                    className={"MuiTypography--heading"}
-                    variant={"h3"}
-                    gutterBottom>
-                    ¡Los datos de tu evento!
-                        </Typography>
-                <Card className={classes.card}>
+                    <Card className={classes.card}>
                     <CardMedia
                         className={classes.media}
                         image={
@@ -80,13 +86,13 @@ class EventResume extends React.Component {
                     />
                     <CardContent className={classes.content}>
                         <Typography
-                            className={"MuiTypography--heading"}
+                            className={classes.heading}
                             variant={"h4"}
                             gutterBottom>
                             Nombre del evento
                         </Typography>
                         <Typography
-                            className={"MuiTypography--subheading"}
+                            className={classes.subheading}
                             variant={"caption"}>
                             <ul>
                                 <li>Fecha</li>
@@ -102,7 +108,7 @@ class EventResume extends React.Component {
                             <ListItem>
                                 <ListItemAvatar>
 
-                                    {chef.map(chef => (
+                                    {this.state.chef.map(chef => (
                                         <Avatar className={classes.bigAvatar} key={chef} src={chef} />
                                     ))}
 

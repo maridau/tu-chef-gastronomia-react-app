@@ -23,7 +23,7 @@ class App extends React.Component {
     super();
     this.state = {
       section: 1,
-
+     
      myEvent: [{
         eventName: '',
         guests: '',
@@ -31,7 +31,7 @@ class App extends React.Component {
         foodType: '',
         date: '',
         restrictions: '',
-        chef: '',
+        chef: 1,
         price:'',
         contact: {
           name: '',

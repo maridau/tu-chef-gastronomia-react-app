@@ -12,12 +12,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
-const chef = [
-    { picture: "assets/chef.jpg", name: 'Julio Gonzalez' },
-    { picture: "assets/chef.jpg", name: 'Julio Gonzalez' },
-    { picture: "assets/chef.jpg", name: 'Julio Gonzalez' },
-    { picture: "assets/chef.jpg", name: 'Julio Gonzalez' }
-];
+
 
 const styles = theme => ({
     container: {
@@ -41,8 +36,8 @@ const styles = theme => ({
     },
     bigAvatar: {
         margin: 10,
-        width: 80,
-        height: 80,
+        width: 100,
+        height: 100,
         display: "inline-block",
         border: "2px solid #96be1e",
         "&:not(:first-of-type)": {
@@ -56,6 +51,13 @@ class EventStep6 extends React.Component {
     constructor() {
         super();
         this.state = {
+            chef: [
+                { id:1, picture: "assets/chef1.png", name: 'Julio Gonzalez' },
+                { id:2, picture: "assets/chef2.png", name: 'Pedro Rivero' },
+                { id:3, picture: "assets/chef3.png", name: 'Santiago Lima' },
+                { id:4, picture: "assets/chef4.png", name: 'Julio Rodriguez' },
+                { id:5, picture: "assets/chef5.png", name: 'Melissa Perez' }
+            ],
         };
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -86,10 +88,10 @@ class EventStep6 extends React.Component {
                     <FormLabel component="legend">¿Cuál va mejor con tu evento?</FormLabel>
                     <List>
 
-                        {chef.map(chef => (
+                        {this.state.chef.map(chef => (
                             <ListItem>
                                 <ListItemAvatar>
-                                    <Avatar className={this.props.classes.bigAvatar} key={chef} src={chef.picture} />
+                                    <Avatar className={this.props.classes.bigAvatar} key={chef.id} src={chef.picture} />
                                 </ListItemAvatar>
                                 <ListItemText primary='Chef' secondary={chef.name} />
                             </ListItem>
