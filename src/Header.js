@@ -28,9 +28,7 @@ class Header extends React.Component {
                                     <a className="nav-link" href="#ContactUs" onClick={this.props.goToContactUs}>Contacto</a>
                                 </li>
                             </ul>
-                            <form className="form-inline my-2 my-md-0">
-                                <input className="form-control" type="text" placeholder="Search" aria-label="Search"></input>
-                            </form>
+                            
                         </div>
                     </div>
                 </nav>

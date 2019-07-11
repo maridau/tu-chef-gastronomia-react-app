@@ -23,18 +23,33 @@ class App extends React.Component {
     super();
     this.state = {
       section: 1,
-      myEvent: []
+
+     myEvent: [{
+        eventName: '',
+        guests: '',
+        mealType: '',
+        foodType: '',
+        date: '',
+        restrictions: '',
+        chef: '',
+        price:'',
+        contact: {
+          name: '',
+          email: '',
+          phone: '',
+        }
+      }] 
     };
-    this.handleAddEventData=this.handleAddEventData.bind(this);
+   
   }
 
-
-  handleAddEventData(newData){
-    this.setState({
-      myEvent:[...this.state.myEvent, newData]
-    });
-    console.log(newData)
+/*   deleteExample = (index, e) =>{
+    const myEvent = Object.assign([], this.state.myEvent); // el estado no puede ser cambiado, por lo que creo un nuevo estado
+    myEvent.splice(index, 1); //busco el elemento con index, y 1 porque voy a eliminar solo 1 elemento
+    this.setState({myEvent:myEvent}) //
   }
+  cuando llamo la función, 
+ */
 
   //no olvidar volver a vaciar el evento, luego de terminar uno
   onClearEvent = () => {
@@ -56,7 +71,6 @@ class App extends React.Component {
   goToEventRegister = () => {
     this.setState({
       section: 3,
-      myEvent: []
     });
   }
   goToEventStep1 = () => {
@@ -120,7 +134,6 @@ class App extends React.Component {
     if (this.state.section === 3) {
       return <EventRegister
         myEvent={this.state.myEvent}
-        onAddEventData={this.handleAddEventData}
         goToEventStep1={this.goToEventStep1}
       />;
     }
@@ -198,7 +211,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header
+       
+       <Header
           goToHome={this.goToHome}
           goToEventRegister={this.goToEventRegister}
           goToRegisterChef={this.goToRegisterChef}
@@ -207,6 +221,7 @@ class App extends React.Component {
         <React.Fragment>
           <CssBaseline />
           <Container maxWidth="sm" style={{ height: '100vh' }} >
+          
             {this.currentSection()}
           </Container>
         </React.Fragment>

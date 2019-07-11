@@ -1,5 +1,55 @@
 import React from 'react';
 import './event.css';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Avatar from "@material-ui/core/Avatar";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+
+const chef = [
+    { picture: "assets/chef.jpg", name: 'Julio Gonzalez' },
+    { picture: "assets/chef.jpg", name: 'Julio Gonzalez' },
+    { picture: "assets/chef.jpg", name: 'Julio Gonzalez' },
+    { picture: "assets/chef.jpg", name: 'Julio Gonzalez' }
+];
+
+const styles = theme => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    paper: {
+        padding: theme.spacing(3, 2),
+        margin: theme.spacing(2, 0),
+        width: '100%'
+    },
+    group: {
+        margin: theme.spacing(3),
+        width: '100%'
+    },
+    dense: {
+        marginTop: 19,
+    },
+    button: {
+        margin: theme.spacing(1),
+    },
+    bigAvatar: {
+        margin: 10,
+        width: 80,
+        height: 80,
+        display: "inline-block",
+        border: "2px solid #96be1e",
+        "&:not(:first-of-type)": {
+            marginLeft: -theme.spacing.unit
+        }
+    }
+});
 
 
 class EventStep6 extends React.Component {
@@ -7,17 +57,57 @@ class EventStep6 extends React.Component {
         super();
         this.state = {
         };
+        this.handleInput = this.handleInput.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleInput(e) {
+        const { name, value } = e.target;
+        this.setState({ [name]: value })
+        console.log(name, value)
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        console.log('submit')
+        this.props.onAddEventData(this.state);
+        this.setState.handleInput = '';
+    }
+
 
     render() {
 
         return (
-            <div className="container">
-                <h1>Elegir un Chef</h1>
-                <button type="button" className="btn btn-primary" onClick={this.props.goToEventStep7}>Siguiente</button>
-            </div>
+            <form className={this.props.classes.container} noValidate autoComplete="off">
+                <Paper className={this.props.classes.paper}>
+                    <Typography variant="h5">
+                        Elegir un Chef
+                    </Typography>
+                    <FormLabel component="legend">¿Cuál va mejor con tu evento?</FormLabel>
+                    <List>
+
+                        {chef.map(chef => (
+                            <ListItem>
+                                <ListItemAvatar>
+                                    <Avatar className={this.props.classes.bigAvatar} key={chef} src={chef.picture} />
+                                </ListItemAvatar>
+                                <ListItemText primary='Chef' secondary={chef.name} />
+                            </ListItem>
+                        )
+                        )}
+
+                    </List>
+
+                    <FormHelperText>¡Sorprendé a tus invitados con algo diferente!</FormHelperText>
+                    <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.handleSubmit}>
+                        Guardar
+                    </Button>
+                    <Button variant="contained" className={this.props.classes.button} onClick={this.props.goToEventStep7}>
+                        Siguiente
+                    </Button>
+                </Paper>
+            </form>
         );
     }
 }
-
-export default EventStep6;
+export default withStyles(styles)(EventStep6);
