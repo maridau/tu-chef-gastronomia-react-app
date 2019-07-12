@@ -36,22 +36,63 @@ class EventStep5 extends React.Component {
     constructor() {
         super();
         this.state = {
+            restrictions:'',
             checkedA: false,
             checkedB: false,
             checkedC: false,
             checkedD: false,
-            checkedE: false
+            checkedE: false,
+            Vegetariana: '',
+            Gluten: '',
+            Mariscos: '',
+            Lacteos: '',
+            FrutosSecos: ''
         };
-        this.handleChange = this.handleChange.bind(this);
     }
-    handleChange = name => event => {
-        this.setState({ ...this.state, [name]: event.target.checked });
-    };
 
+    handleInput = name => e => {
+        this.setState({
+            ...this.state, [name]: e.target.checked
+        });
+
+        if(this.state.checkedA===true)
+        this.setState({
+            ...this.state, Vegetariana :'Vegetariana'
+        });
+        else if(this.state.checkedB===true)
+        this.setState({
+            ...this.state, Gluten :'Gluten'
+        });
+        else if(this.state.checkedC===true)
+        this.setState({
+            ...this.state, Mariscos :'Mariscos'
+        });
+        else if(this.state.checkedD===true)
+        this.setState({
+            ...this.state, Lacteos :'Lacteos'
+        });
+        else if(this.state.checkedD===true)
+        this.setState({
+            ...this.state, FrutosSecos :'Frutos Secos'
+        });
+
+        this.setState({
+            ...this.state, restrictions: this.state.Vegetariana + ', ' + this.state.Gluten + ', ' + this.state.Mariscos + ', ' + this.state.Lacteos + ', ' + this.state.FrutosSecos
+        });
+        console.log(this.state.restrictions)
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.changeEventData('restrictions', this.state.restrictions);
+        this.setState({
+            restrictions: '',
+        });
+    }
     render() {
         const GreenCheckbox = withStyles({
             root: {
-                color: '#96be1e',
+                color: '#c9e86a',
                 '&$checked': {
                     color: '#96be1e',
                 },
@@ -71,8 +112,8 @@ class EventStep5 extends React.Component {
                             control={
                                 <GreenCheckbox
                                     checked={this.state.checkedA}
-                                    onChange={this.handleChange('checkedA')}
-                                    value="checkedA"
+                                    onChange={this.handleInput('checkedA')}
+                                    value={this.state.Vegetariana}
                                 />
                             }
                             label="Vegetariana"
@@ -81,8 +122,8 @@ class EventStep5 extends React.Component {
                             control={
                                 <GreenCheckbox
                                     checked={this.state.checkedB}
-                                    onChange={this.handleChange('checkedB')}
-                                    value="checkedB"
+                                    onChange={this.handleInput('checkedB')}
+                                    value={this.state.Gluten}
                                 />
                             }
                             label="Gluten"
@@ -91,8 +132,8 @@ class EventStep5 extends React.Component {
                             control={
                                 <GreenCheckbox
                                     checked={this.state.checkedC}
-                                    onChange={this.handleChange('checkedC')}
-                                    value="checkedC"
+                                    onChange={this.handleInput('checkedC')}
+                                    value={this.state.Mariscos}
                                 />
                             }
                             label="Mariscos"
@@ -101,8 +142,8 @@ class EventStep5 extends React.Component {
                             control={
                                 <GreenCheckbox
                                     checked={this.state.checkedD}
-                                    onChange={this.handleChange('checkedD')}
-                                    value="checkedD"
+                                    onChange={this.handleInput('checkedD')}
+                                    value={this.state.Lacteos}
                                 />
                             }
                             label="Lacteos"
@@ -111,8 +152,8 @@ class EventStep5 extends React.Component {
                             control={
                                 <GreenCheckbox
                                     checked={this.state.checkedE}
-                                    onChange={this.handleChange('checkedE')}
-                                    value="checkedE"
+                                    onChange={this.handleInput('checkedE')}
+                                    value={this.state.FrutosSecos}
                                 />
                             }
                             label="Frutos secos"

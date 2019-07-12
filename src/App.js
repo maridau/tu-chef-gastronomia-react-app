@@ -22,7 +22,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      section: 1,
+      section: 34,
 
       myEvent: {
         eventName: '',

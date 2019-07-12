@@ -6,7 +6,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
-
+import { DatePicker } from "@material-ui/pickers";
+import {MuiPickersUtilsProvider} from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 
 const styles = theme => ({
     container: {
@@ -21,11 +23,11 @@ const styles = theme => ({
     formControl: {
         margin: theme.spacing(3),
         width: '100%'
-      },
+    },
     group: {
         margin: theme.spacing(3),
         width: '100%'
-      },
+    },
     dense: {
         marginTop: 19,
     },
@@ -39,22 +41,25 @@ class EventStep4 extends React.Component {
     constructor() {
         super();
         this.state = {
+            selectedDate: new Date(),
         };
-        this.handleInput = this.handleInput.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
-    handleInput(e) {
-        const {name, value} = e.target;
-        this.setState({[name]:value})
-        console.log(name, value)
+    handleDateChange = e => {
+        this.setState({
+            newDate: e.target.value
+        });
+        console.log(this.state.newDate)
     }
-    
-    handleSubmit(e) {
+
+
+    handleSubmit = (e) => {
         e.preventDefault();
-        console.log('submit')
-        this.props.onAddEventData(this.state);
-        this.setState.handleInput='';
+        this.props.changeEventData('date', this.state.newDate);
+        this.setState({
+            newDate: '',
+        });
     }
 
 
@@ -65,12 +70,21 @@ class EventStep4 extends React.Component {
             <form className={this.props.classes.container} noValidate autoComplete="off">
                 <Paper className={this.props.classes.paper}>
                     <Typography variant="h5">
-                    Seleccionar fecha
+                        Seleccionar fecha
                     </Typography>
-                        <FormLabel component="legend">¿Cuál va mejor con tu evento?</FormLabel>
-                     
+                    <FormLabel component="legend">¡Empieza la cuenta regresiva!</FormLabel>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <DatePicker
+                            label="Basic example"
+                            value={this.state.selectedDate}
+                            onChange={this.handleDateChange}
+                            animateYearScrolling
+                        />
+                        </MuiPickersUtilsProvider>
 
-                        <FormHelperText>¡Sorprendé a tus invitados con algo diferente!</FormHelperText>
+
+
+                    <FormHelperText>¡Sorprendé a tus invitados con algo diferente!</FormHelperText>
                     <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.handleSubmit}>
                         Guardar
                     </Button>
@@ -78,7 +92,7 @@ class EventStep4 extends React.Component {
                         Siguiente
                     </Button>
                 </Paper>
-                </form>
+            </form>
 
         );
     }

@@ -65,7 +65,7 @@ class EventStep2 extends React.Component {
         console.log(this.props.myEvent)
         const GreenRadioButton = withStyles({
             root: {
-                color: '#96be1e',
+                color: '#c9e86a',
                 '&$checked': {
                     color: '#96be1e',
                 },
