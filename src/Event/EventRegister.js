@@ -37,45 +37,25 @@ class EventRegister extends React.Component {
   constructor() {
     super();
     this.state = {
-
+      newEventName: ''
     };
-
-    this.handleInput = this.handleInput.bind(this);
-    this.addEventData = this.addEventData.bind(this);
   }
 
-  handleInput(e) {
-    const { value, name } = e.target;
+  handleInput = e => {
     this.setState({
-      [name]: value
-    })
-    this.addEventData(name, value);
+      newEventName: e.target.value
+    });
+    console.log(this.state.newEventName)
   }
 
-  addEventData = (name, value) => {
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.changeEventData('eventName', this.state.newEventName);
     this.setState({
-      //const myEvent = {...this.props.myEvent, eventName: name}
-      //const newObject = {...oldObject, name: 'Modified name'}
-      //myEvent: this.props.myEvent.map(event => event.eventName === name ? event.eventName : value)
-      myEvent: this.props.myEvent.map(item => {
-        if (item.eventName === name) {
-          item = { ...this.props.myEvent, eventName: value };
-        }
-        return item; //me devuelve el nuevo evento
-      })
-
-    })
-    console.log(this.item)
+      newEventName: '',
+    });
   }
-
-  handleSubmit = () => {
-    if (this.props.myEvent.id === 1) {
-      this.props.addEventData(this.props.myEvent.id, {
-        eventName: this.props.myEvent.eventName
-      });
-    }
-  }
-
 
   render() {
     console.log(this.props.myEvent)
@@ -84,17 +64,17 @@ class EventRegister extends React.Component {
         <Paper className={this.props.classes.paper}>
           <Typography variant="h5">
             ¿Qué vas a festejar?
-                    </Typography>
+          </Typography>
           <TextField
-            id="guests"
+            name="eventName"
             label="¡Contanos!"
             className={this.props.classes.textField}
-            //value={this.state.guests}
+            value={this.state.newEventName}
             onChange={this.handleInput}
             margin="normal"
           />
 
-          <Button variant="contained"  className={this.props.classes.button} onClick={this.handleSubmit}>
+          <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.handleSubmit}>
             Guardar
                     </Button>
           <Button variant="contained" className={this.props.classes.button} onClick={this.props.goToEventStep1}>

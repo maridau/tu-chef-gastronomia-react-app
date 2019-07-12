@@ -43,26 +43,24 @@ class EventStep3 extends React.Component {
     constructor() {
         super();
         this.state = {
-            mediterranea:'',
-            italiana:'',
-            francesa:'',
-            japonesa:'',
-            mexicana:'',
-            sorpresa:''
+            newFoodType:'',
         };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange = name => event => {
-        this.setState({ ...this.state, [name]: event.target});
-    };
+    handleInput = e => {
+        this.setState({
+            newFoodType: e.target.value
+        });
+        console.log(this.state.newFoodType)
+    }
 
-    handleSubmit(e) {
+
+    handleSubmit = (e) => {
         e.preventDefault();
-        console.log('submit')
-        this.props.onAddEventData(this.state);
-        this.setState.handleInput = '';
+        this.props.changeEventData('mealType', this.state.newFoodType);
+        this.setState({
+            newFoodType: '',
+        });
     }
 
     render() {
@@ -88,8 +86,8 @@ class EventStep3 extends React.Component {
                             aria-label="Tipo de comida"
                             name="foodType"
                             className={this.props.classes.group}
-                            value={this.state.value}
-                            onChange={this.handleChange}
+                            value={this.state.newFoodType}
+                            onChange={this.handleInput}
                         >
                             <FormControlLabel value="mediterranea" control={<GreenRadioButton />} label="Mediterranea" />
                             <FormControlLabel value="italiana" control={<GreenRadioButton />} label="Italiana" />

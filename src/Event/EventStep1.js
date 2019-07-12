@@ -32,25 +32,29 @@ const styles = theme => ({
 });
 
 
+
 class EventStep1 extends React.Component {
     constructor() {
         super();
         this.state = {
+            newEventGuests: ''
         };
-        this.handleInput = this.handleInput.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleInput(e) {
-        const { name, value } = e.target;
-        this.setState({ [name]: value })
-        console.log(name, value)
+    handleInput = e => {
+        this.setState({
+            newEventGuests: e.target.value
+        });
+        console.log(this.state.newEventGuests)
     }
-    handleSubmit(e) {
+
+
+    handleSubmit = (e) => {
         e.preventDefault();
-        console.log('submit')
-        this.props.onAddEventData(this.state);
-        this.setState.handleInput = '';
+        this.props.changeEventData('guests', this.state.newEventGuests);
+        this.setState({
+            newEventGuests: '',
+        });
     }
 
     render() {
@@ -63,10 +67,10 @@ class EventStep1 extends React.Component {
                     </Typography>
 
                     <TextField
-                        id="guests"
+                        name="guests"
                         label="Invitados"
                         className={this.props.classes.textField}
-                        //value={this.state.guests}
+                        value={this.state.newEventGuests}
                         onChange={this.handleInput}
                         margin="normal"
                     />

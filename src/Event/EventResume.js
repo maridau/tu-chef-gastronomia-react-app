@@ -18,8 +18,8 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 const styles = theme => ({
     palette: {
         primary: '#96be1e', //verde
-        secondary:'#323c46', //gris fuerte
-      },
+        secondary: '#323c46', //gris fuerte
+    },
     card: {
         maxWidth: 400,
         margin: "auto",
@@ -46,7 +46,7 @@ const styles = theme => ({
         lineHeight: 1.8
     },
     bigAvatar: {
-        margin: 10,
+        margin: 3,
         width: 80,
         height: 80,
         display: "inline-block",
@@ -62,11 +62,7 @@ class EventResume extends React.Component {
         super();
         this.state = {
             chef: [
-                { id:1, picture: "assets/chef1.png", name: 'Julio Gonzalez' },
-                { id:2, picture: "assets/chef2.png", name: 'Pedro Rivero' },
-                { id:3, picture: "assets/chef3.png", name: 'Santiago Lima' },
-                { id:4, picture: "assets/chef4.png", name: 'Julio Rodriguez' },
-                { id:5, picture: "assets/chef5.png", name: 'Melissa Perez' }
+                { id: 1, picture: "assets/chef1.png", name: 'Julio Gonzalez' },
             ],
         };
     }
@@ -77,7 +73,7 @@ class EventResume extends React.Component {
 
         return (
             <div>
-                    <Card className={classes.card}>
+                <Card className={classes.card}>
                     <CardMedia
                         className={classes.media}
                         image={
@@ -105,16 +101,18 @@ class EventResume extends React.Component {
                         </Typography>
                         <Divider className={classes.divider} light />
                         <List>
-                            <ListItem>
-                                <ListItemAvatar>
 
-                                    {this.state.chef.map(chef => (
-                                        <Avatar className={classes.bigAvatar} key={chef} src={chef} />
-                                    ))}
 
-                                </ListItemAvatar>
-                                <ListItemText primary="Chef" secondary="Julio Gonzalez" />
-                            </ListItem>
+                            {this.state.chef.map(chef => (
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar className={classes.bigAvatar} key={chef.id} src={chef.picture} />
+                                    </ListItemAvatar>
+                                    <ListItemText primary="Chef" secondary={chef.name} />
+                                </ListItem>
+                            ))}
+
+
                         </List>
 
                     </CardContent>

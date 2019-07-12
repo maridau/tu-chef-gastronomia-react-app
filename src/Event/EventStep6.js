@@ -35,9 +35,9 @@ const styles = theme => ({
         margin: theme.spacing(1),
     },
     bigAvatar: {
-        margin: 10,
-        width: 100,
-        height: 100,
+        margin: 5,
+        width: 80,
+        height: 80,
         display: "inline-block",
         border: "2px solid #96be1e",
         "&:not(:first-of-type)": {

@@ -23,8 +23,8 @@ class App extends React.Component {
     super();
     this.state = {
       section: 1,
-     
-     myEvent: [{
+
+      myEvent: {
         eventName: '',
         guests: '',
         mealType: '',
@@ -32,26 +32,26 @@ class App extends React.Component {
         date: '',
         restrictions: '',
         chef: 1,
-        price:'',
+        price: '',
         contact: {
           name: '',
           email: '',
           phone: '',
         }
-      }] 
+      }
     };
-   
   }
 
-/*   deleteExample = (index, e) =>{
-    const myEvent = Object.assign([], this.state.myEvent); // el estado no puede ser cambiado, por lo que creo un nuevo estado
-    myEvent.splice(index, 1); //busco el elemento con index, y 1 porque voy a eliminar solo 1 elemento
-    this.setState({myEvent:myEvent}) //
+  changeEventData = (name, value) => {
+    this.setState({
+      myEvent: {
+        ...this.state.myEvent, 
+        [name]: value
+      }
+    })
+    console.log(this.item)
   }
-  cuando llamo la función, 
- */
 
-  //no olvidar volver a vaciar el evento, luego de terminar uno
   onClearEvent = () => {
     this.setState({ myEvent: [] });
   };
@@ -134,66 +134,67 @@ class App extends React.Component {
     if (this.state.section === 3) {
       return <EventRegister
         myEvent={this.state.myEvent}
+        changeEventData={this.changeEventData}
         goToEventStep1={this.goToEventStep1}
       />;
     }
     if (this.state.section === 31) {
       return <EventStep1
-      myEvent={this.state.myEvent}
-      onAddEventData={this.handleAddEventData}
-      goToEventStep2={this.goToEventStep2}
+        myEvent={this.state.myEvent}
+        changeEventData={this.changeEventData}
+        goToEventStep2={this.goToEventStep2}
       />;
     }
     if (this.state.section === 32) {
       return <EventStep2
-      myEvent={this.state.myEvent}
-      onAddEventData={this.handleAddEventData}
-      goToEventStep3={this.goToEventStep3}
+        myEvent={this.state.myEvent}
+        changeEventData={this.changeEventData}
+        goToEventStep3={this.goToEventStep3}
       />;
     }
     if (this.state.section === 33) {
       return <EventStep3
-      myEvent={this.state.myEvent}
-      onAddEventData={this.handleAddEventData}
-      goToEventStep4={this.goToEventStep4}
+        myEvent={this.state.myEvent}
+        changeEventData={this.changeEventData}
+        goToEventStep4={this.goToEventStep4}
       />;
     }
     if (this.state.section === 34) {
       return <EventStep4
-      myEvent={this.state.myEvent}
-      onAddEventData={this.handleAddEventData}
-      goToEventStep5={this.goToEventStep5}
-      goToEventResume={this.goToEventResume}
+        myEvent={this.state.myEvent}
+        changeEventData={this.changeEventData}
+        goToEventStep5={this.goToEventStep5}
+        goToEventResume={this.goToEventResume}
       />;
     }
     if (this.state.section === 35) {
       return <EventStep5
-      myEvent={this.state.myEvent}
-      onAddEventData={this.handleAddEventData}
-      goToEventStep6={this.goToEventStep6}
+        myEvent={this.state.myEvent}
+        changeEventData={this.changeEventData}
+        goToEventStep6={this.goToEventStep6}
       />;
     }
 
     if (this.state.section === 36) {
       return <EventStep6
-      myEvent={this.state.myEvent}
-      onAddEventData={this.handleAddEventData}
-      goToEventStep7={this.goToEventStep7}
+        myEvent={this.state.myEvent}
+        changeEventData={this.changeEventData}
+        goToEventStep7={this.goToEventStep7}
       />;
     }
 
     if (this.state.section === 37) {
       return <EventStep7
-      myEvent={this.state.myEvent}
-      onAddEventData={this.handleAddEventData}
-      goToEventResume={this.goToEventResume}
+        myEvent={this.state.myEvent}
+        changeEventData={this.changeEventData}
+        goToEventResume={this.goToEventResume}
       />;
     }
 
     if (this.state.section === 38) {
-      return <EventResume 
-      myEvent={this.state.myEvent}
-      onAddEventData={this.handleAddEventData}
+      return <EventResume
+        myEvent={this.state.myEvent}
+        changeEventData={this.changeEventData}
       />;
 
     }
@@ -211,8 +212,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-       
-       <Header
+
+        <Header
           goToHome={this.goToHome}
           goToEventRegister={this.goToEventRegister}
           goToRegisterChef={this.goToRegisterChef}
@@ -221,7 +222,7 @@ class App extends React.Component {
         <React.Fragment>
           <CssBaseline />
           <Container maxWidth="sm" style={{ height: '100vh' }} >
-          
+
             {this.currentSection()}
           </Container>
         </React.Fragment>

@@ -41,23 +41,26 @@ class EventStep2 extends React.Component {
     constructor() {
         super();
         this.state = {
-
+            newMealType:''
         };
-        this.handleInput = this.handleInput.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleInput(e) {
-        const { name, value } = e.target;
-        this.setState({ [name]: value })
-        console.log(name, value)
+    handleInput = e => {
+        this.setState({
+            newMealType: e.target.value
+        });
+        console.log(this.state.newMealType)
     }
-    handleSubmit(e) {
+
+
+    handleSubmit = (e) => {
         e.preventDefault();
-        console.log('submit')
-        this.props.onAddEventData(this.state);
-        this.setState.handleInput = '';
+        this.props.changeEventData('mealType', this.state.newMealType);
+        this.setState({
+            newMealType: '',
+        });
     }
+
     render() {
         console.log(this.props.myEvent)
         const GreenRadioButton = withStyles({
@@ -68,7 +71,7 @@ class EventStep2 extends React.Component {
                 },
             },
             checked: {},
-        })(props => <Radio color="default" {...props} />);
+            })(props => <Radio color="default" {...props} />);
 
         return (
             <form className={this.props.classes.container} noValidate autoComplete="off">
@@ -82,8 +85,8 @@ class EventStep2 extends React.Component {
                         aria-label="Comida"
                         name="mealType"
                         className={this.props.classes.group}
-                        value={this.state.value}
-                        onChange={this.handleChange}
+                        value={this.state.newMealType}
+                        onChange={this.handleInput}
                     >
                         <FormControlLabel value="desayuno" control={<GreenRadioButton />} label="Desayuno" />
                         <FormControlLabel value="almuerzo" control={<GreenRadioButton />} label="Almuerzo" />
