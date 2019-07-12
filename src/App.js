@@ -53,7 +53,22 @@ class App extends React.Component {
   }
 
   onClearEvent = () => {
-    this.setState({ myEvent: [] });
+    this.setState({ 
+      myEvent: {
+      eventName: '',
+      guests: '',
+      mealType: '',
+      foodType: '',
+      date: '',
+      restrictions: '',
+      chef: 1,
+      price: '',
+      contact: {
+        name: '',
+        email: '',
+        phone: '',
+      }
+    } });
   };
 
   goToHome = () => {
