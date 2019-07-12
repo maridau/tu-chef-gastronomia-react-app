@@ -49,7 +49,6 @@ class App extends React.Component {
         [name]: value
       }
     })
-    console.log(this.item)
   }
 
   onClearEvent = () => {

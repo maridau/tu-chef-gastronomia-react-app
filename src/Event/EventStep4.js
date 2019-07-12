@@ -10,6 +10,7 @@ import { DatePicker } from "@material-ui/pickers";
 import {MuiPickersUtilsProvider} from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
+
 const styles = theme => ({
     container: {
         display: 'flex',
@@ -34,6 +35,10 @@ const styles = theme => ({
     button: {
         margin: theme.spacing(1),
     },
+    datePicker:{
+        marginTop: 20,
+        marginBottom: 20
+    },
 });
 
 
@@ -41,48 +46,55 @@ class EventStep4 extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedDate: new Date(),
+            selectedDate: Date()
         };
 
     }
 
-    handleDateChange = e => {
+    handleDateChange = (date) => {
         this.setState({
-            newDate: e.target.value
+            selectedDate: date
         });
-        console.log(this.state.newDate)
+        console.log(this.state.selectedDate + 'handle Change')
     }
 
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.changeEventData('date', this.state.newDate);
+        this.props.changeEventData('date', this.state.selectedDate);
         this.setState({
-            newDate: '',
+            selectedDate: Date()
         });
+        console.log(this.state.selectedDate + 'guardó o no guardó?')
     }
-
+    
+    
 
     render() {
         console.log(this.props.myEvent)
+        //console.log(this.state.selectedDate)
         return (
 
             <form className={this.props.classes.container} noValidate autoComplete="off">
                 <Paper className={this.props.classes.paper}>
                     <Typography variant="h5">
-                        Seleccionar fecha
+                    ¡Empieza la cuenta regresiva!"
                     </Typography>
-                    <FormLabel component="legend">¡Empieza la cuenta regresiva!</FormLabel>
+                    <FormLabel component="legend"></FormLabel>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <DatePicker
-                            label="Basic example"
+                            className={this.props.classes.datePicker}
+                            label="Seleccionar fecha"
+                            name='date'
+                            //format='03/25/2015'
                             value={this.state.selectedDate}
+                            //InputLabelProps={{
+                              //  shrink: true,
+                              //}}
                             onChange={this.handleDateChange}
                             animateYearScrolling
                         />
                         </MuiPickersUtilsProvider>
-
-
 
                     <FormHelperText>¡Sorprendé a tus invitados con algo diferente!</FormHelperText>
                     <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.handleSubmit}>

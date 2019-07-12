@@ -47,7 +47,7 @@ class EventStep3 extends React.Component {
         };
     }
 
-    handleInput = e => {
+    handleInput = (e) => {
         this.setState({
             newFoodType: e.target.value
         });
