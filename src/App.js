@@ -22,7 +22,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      section: 34,
+      section: 1,
 
       myEvent: {
         eventName: '',
@@ -33,11 +33,9 @@ class App extends React.Component {
         restrictions: '',
         chef: 1,
         price: '',
-        contact: {
-          name: '',
-          email: '',
-          phone: '',
-        }
+        contactName: '',
+        contactEmail: '',
+        contactPhone: ''
       }
     };
   }
@@ -207,8 +205,8 @@ class App extends React.Component {
 
     if (this.state.section === 38) {
       return <EventResume
-        myEvent={this.state.myEvent}
-        changeEventData={this.changeEventData}
+      myEvent={this.state.myEvent}
+      changeEventData={this.changeEventData}
       />;
 
     }

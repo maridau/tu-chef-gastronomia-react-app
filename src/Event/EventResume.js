@@ -8,12 +8,10 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
-
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-
 
 const styles = theme => ({
     palette: {
@@ -67,9 +65,10 @@ class EventResume extends React.Component {
         };
     }
     render() {
-        const { classes } = this.props;
-
         console.log(this.props.myEvent)
+
+        const { classes } = this.props;
+        const newEvent = this.props.myEvent;
 
         return (
             <div>
@@ -84,26 +83,35 @@ class EventResume extends React.Component {
                         <Typography
                             className={classes.heading}
                             variant={"h4"}
-                            gutterBottom>
-                            Nombre del evento
+                            gutterBottom
+                        >
+                            {newEvent.eventName}
                         </Typography>
                         <Typography
                             className={classes.subheading}
                             variant={"caption"}>
-                            <ul>
-                                <li>Fecha</li>
-                                <li>Cantidad de personas</li>
-                                <li>Almuerzo - Cena</li>
-                                <li>Comida Italiana</li>
-                                <li>Sin Gluten</li>
-                                <li>Chef</li>
-                            </ul>
                         </Typography>
+                        <List>
+                            <ListItem>
+                                <ListItemText primary='Cantidad de invitados' secondary={newEvent.guests} />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText primary='Momento del festejo' secondary={newEvent.mealType} />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText primary='Tipo de comida' secondary={newEvent.foodType} />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText primary='Fecha' secondary={newEvent.date.toString()} />
+                            </ListItem>
+                            
+                        
+                        </List>
+
+
                         <Divider className={classes.divider} light />
                         <List>
-
-
-                            {this.state.chef.map(chef => (
+                        {this.state.chef.map(chef => (
                                 <ListItem>
                                     <ListItemAvatar>
                                         <Avatar className={classes.bigAvatar} key={chef.id} src={chef.picture} />
@@ -112,9 +120,9 @@ class EventResume extends React.Component {
                                 </ListItem>
                             ))}
 
+                            
 
                         </List>
-
                     </CardContent>
                 </Card>
             </div>
