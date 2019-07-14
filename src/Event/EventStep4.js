@@ -72,7 +72,7 @@ class EventStep4 extends React.Component {
 
     render() {
         console.log(this.props.myEvent)
-        //console.log(this.state.selectedDate)
+        
         return (
 
             <form className={this.props.classes.container} noValidate autoComplete="off">

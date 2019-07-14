@@ -31,12 +31,19 @@ class App extends React.Component {
         foodType: '',
         date: '',
         restrictions: '',
-        chef: 1,
-        price: '',
+        chef: 0,
+        price: 0,
         contactName: '',
         contactEmail: '',
-        contactPhone: ''
-      }
+        contactPhone: 0
+      },
+      chef: [
+        { id:1, picture: "assets/chef1.png", name: 'Julio Gonzalez' },
+        { id:2, picture: "assets/chef2.png", name: 'Pedro Rivero' },
+        { id:3, picture: "assets/chef3.png", name: 'Santiago Lima' },
+        { id:4, picture: "assets/chef4.png", name: 'Julio Rodriguez' },
+        { id:5, picture: "assets/chef5.png", name: 'Melissa Perez' }
+    ],
     };
   }
 
@@ -48,6 +55,7 @@ class App extends React.Component {
       }
     })
   }
+
 
   onClearEvent = () => {
     this.setState({ 
@@ -115,14 +123,14 @@ class App extends React.Component {
       section: 36
     });
   }
-  goToEventStep7 = () => {
+  goToEventStep7 = (e) => {
     this.setState({
-      section: 37
+      section: 37,
     });
   }
-  goToEventResume = () => {
+  goToEventResume = (e) => {
     this.setState({
-      section: 38
+      section: 38,
     });
   }
 
@@ -190,6 +198,7 @@ class App extends React.Component {
     if (this.state.section === 36) {
       return <EventStep6
         myEvent={this.state.myEvent}
+        chef={this.state.chef}
         changeEventData={this.changeEventData}
         goToEventStep7={this.goToEventStep7}
       />;
@@ -206,6 +215,7 @@ class App extends React.Component {
     if (this.state.section === 38) {
       return <EventResume
       myEvent={this.state.myEvent}
+      eventChef={this.state.chef}
       changeEventData={this.changeEventData}
       />;
 

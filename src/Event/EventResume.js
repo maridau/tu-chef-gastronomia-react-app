@@ -59,13 +59,11 @@ class EventResume extends React.Component {
     constructor() {
         super();
         this.state = {
-            chef: [
-                { id: 1, picture: "assets/chef1.png", name: 'Julio Gonzalez' },
-            ],
         };
     }
     render() {
         console.log(this.props.myEvent)
+        console.log(this.props.eventChef)
 
         const { classes } = this.props;
         const newEvent = this.props.myEvent;
@@ -111,12 +109,14 @@ class EventResume extends React.Component {
 
                         <Divider className={classes.divider} light />
                         <List>
-                        {this.state.chef.map(chef => (
+                            {this.props.eventChef.filter(item => item.id===newEvent.chef)
+                                //.map((animalItem, i) => {
+                                .map(item => (
                                 <ListItem>
                                     <ListItemAvatar>
-                                        <Avatar className={classes.bigAvatar} key={chef.id} src={chef.picture} />
+                                        <Avatar className={classes.bigAvatar} key={item.id} src={item.picture} />
                                     </ListItemAvatar>
-                                    <ListItemText primary="Chef" secondary={chef.name} />
+                                    <ListItemText primary="Chef" secondary={item.name} />
                                 </ListItem>
                             ))}
 

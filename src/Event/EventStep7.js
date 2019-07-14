@@ -36,7 +36,7 @@ class EventStep7 extends React.Component {
     }
 
     render() {
-
+        console.log(this.props.myEvent)
         return (
             <form className={this.props.classes.container} noValidate autoComplete="off">
                 <Paper className={this.props.classes.paper}>

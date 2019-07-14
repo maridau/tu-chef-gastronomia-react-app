@@ -90,6 +90,7 @@ class EventStep5 extends React.Component {
         });
     }
     render() {
+        console.log(this.props.myEvent)
         const GreenCheckbox = withStyles({
             root: {
                 color: '#c9e86a',

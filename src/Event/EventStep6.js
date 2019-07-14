@@ -7,14 +7,27 @@ import Typography from '@material-ui/core/Typography';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Avatar from "@material-ui/core/Avatar";
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 
 const styles = theme => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        width: '100%',
+    },
+    select: {
+        height:'100px',
+        marginTop: theme.spacing(2),
+    },
     container: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -36,8 +49,8 @@ const styles = theme => ({
     },
     bigAvatar: {
         margin: 5,
-        width: 80,
-        height: 80,
+        width: 60,
+        height: 60,
         display: "inline-block",
         border: "2px solid #96be1e",
         "&:not(:first-of-type)": {
@@ -51,33 +64,28 @@ class EventStep6 extends React.Component {
     constructor() {
         super();
         this.state = {
-            chef: [
-                { id:1, picture: "assets/chef1.png", name: 'Julio Gonzalez' },
-                { id:2, picture: "assets/chef2.png", name: 'Pedro Rivero' },
-                { id:3, picture: "assets/chef3.png", name: 'Santiago Lima' },
-                { id:4, picture: "assets/chef4.png", name: 'Julio Rodriguez' },
-                { id:5, picture: "assets/chef5.png", name: 'Melissa Perez' }
-            ],
+            newChef: 1
         };
-        this.handleInput = this.handleInput.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleInput(e) {
-        const { name, value } = e.target;
-        this.setState({ [name]: value })
-        console.log(name, value)
+    handleInput = (e) => {
+        this.setState({
+            newChef: e.target.value
+        });
+        console.log(e.target.value)
     }
 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
-        console.log('submit')
-        this.props.onAddEventData(this.state);
-        this.setState.handleInput = '';
+        this.props.changeEventData('chef', this.state.newChef);
+        this.setState({
+            newChef: 0,
+        });
     }
-
 
     render() {
+        const { classes } = this.props;
+        console.log(this.props.myEvent)
 
         return (
             <form className={this.props.classes.container} noValidate autoComplete="off">
@@ -86,19 +94,33 @@ class EventStep6 extends React.Component {
                         Elegir un Chef
                     </Typography>
                     <FormLabel component="legend">¿Cuál va mejor con tu evento?</FormLabel>
-                    <List>
 
-                        {this.state.chef.map(chef => (
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar className={this.props.classes.bigAvatar} key={chef.id} src={chef.picture} />
-                                </ListItemAvatar>
-                                <ListItemText primary='Chef' secondary={chef.name} />
-                            </ListItem>
-                        )
-                        )}
+                    <FormControl className={classes.formControl}>
+                        <Select
+                            className={classes.select}
+                            value={this.state.newChef}
+                            onChange={this.handleInput}
+                            inputProps={{
+                                name: 'Chef',
+                                id: 'nuevoChef',
+                            }}
+                        >
 
-                    </List>
+                            {this.props.chef.map(chef => (
+                                <MenuItem key={chef.id} value={chef.id}>
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            <Avatar className={this.props.classes.bigAvatar} src={chef.picture} />
+                                        </ListItemAvatar>
+                                        <ListItemText primary='Chef' secondary={chef.name} />
+                                    </ListItem>
+                                </MenuItem>
+                            )
+
+                            )}
+
+                        </Select>
+                    </FormControl>
 
                     <FormHelperText>¡Sorprendé a tus invitados con algo diferente!</FormHelperText>
                     <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.handleSubmit}>
