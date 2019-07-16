@@ -67,7 +67,6 @@ class App extends React.Component {
       chef: 1,
       price: 200,
       contactEmail: '',
-
     },
     } );
   };
@@ -144,7 +143,9 @@ class App extends React.Component {
 
   currentSection() {
     if (this.state.section === 1) {
-      return <Home />;
+      return <Home 
+      goToEventRegister={this.goToEventRegister}
+      />;
     }
 
     if (this.state.section === 3) {
