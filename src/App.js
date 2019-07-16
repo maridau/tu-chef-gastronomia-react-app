@@ -17,7 +17,6 @@ import EventStep6 from './Event/EventStep6.js';
 import EventStep7 from './Event/EventStep7.js';
 import EventResume from './Event/EventResume.js';
 
-
 class App extends React.Component {
   constructor() {
     super();
@@ -31,12 +30,11 @@ class App extends React.Component {
         foodType: '',
         date: '',
         restrictions: '',
-        chef: 0,
-        price: 0,
-        contactName: '',
-        contactEmail: '',
-        contactPhone: 0
+        chef: 1,
+        price: 200,
+          contactEmail: '',
       },
+
       chef: [
         { id:1, picture: "assets/chef1.png", name: 'Julio Gonzalez' },
         { id:2, picture: "assets/chef2.png", name: 'Pedro Rivero' },
@@ -67,13 +65,11 @@ class App extends React.Component {
       date: '',
       restrictions: '',
       chef: 1,
-      price: '',
-      contact: {
-        name: '',
-        email: '',
-        phone: '',
-      }
-    } });
+      price: 200,
+      contactEmail: '',
+
+    },
+    } );
   };
 
   goToHome = () => {
@@ -244,7 +240,6 @@ class App extends React.Component {
         <React.Fragment>
           <CssBaseline />
           <Container maxWidth="sm" style={{ height: '100vh' }} >
-
             {this.currentSection()}
           </Container>
         </React.Fragment>

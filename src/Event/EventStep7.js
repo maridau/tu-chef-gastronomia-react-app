@@ -28,54 +28,54 @@ const styles = theme => ({
     },
 });
 
+
 class EventStep7 extends React.Component {
     constructor() {
         super();
         this.state = {
+            newContactEmail:''
         };
     }
 
+    handleInput = (e) => {
+        this.setState({
+            newContactEmail: e.target.value
+        });
+        console.log(e.target.value)
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.changeEventData('contactEmail', this.state.newContactEmail);
+        this.setState({
+            newContactEmail: '',
+        });
+    }
+    
     render() {
         console.log(this.props.myEvent)
         return (
             <form className={this.props.classes.container} noValidate autoComplete="off">
                 <Paper className={this.props.classes.paper}>
                     <Typography variant="h5">
-                        Contact information
-          </Typography>
-
+                        Te enviamos más detalles sobre tu evento
+                    </Typography>
+                    
                     <TextField
-                        id="contactName"
-                        label="Name"
-                        className={this.props.classes.textField}
-                        //value={this.state.contact.name}
-                        //onChange={this.handleContactChange('name')}
-                        margin="normal"
-                    />
-
-                    <TextField
-                        id="contactEmail"
+                        name="contactEmail"
                         label="Email"
                         className={this.props.classes.textField}
-                        //value={this.state.contact.email}
-                        //onChange={this.handleContactChange('email')}
+                        value={this.state.newContactEmail}
+                        onChange={this.handleInput}
                         margin="normal"
                     />
-
-                    <TextField
-                        id="contactPhone"
-                        label="Phone"
-                        className={this.props.classes.textField}
-                        //value={this.state.contact.phone}
-                        //onChange={this.handleContactChange('phone')}
-                        margin="normal"
-                    />
+                   
                     <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.handleSubmit}>
                         Guardar
-          </Button>
+                    </Button>
                     <Button variant="contained" className={this.props.classes.button} onClick={this.props.goToEventResume}>
                         Siguiente
-        </Button>
+                    </Button>
                 </Paper>
             </form>
         );

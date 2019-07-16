@@ -33,53 +33,35 @@ const styles = theme => ({
 
 
 class EventStep5 extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            restrictions:'',
-            checkedA: false,
-            checkedB: false,
-            checkedC: false,
-            checkedD: false,
-            checkedE: false,
-            Vegetariana: '',
-            Gluten: '',
-            Mariscos: '',
-            Lacteos: '',
-            FrutosSecos: ''
-        };
+    componentWillMount() {
+        const {checked} = this.props
+        if (checked) {
+            this.setState({
+                switched: true,
+            })
+        }
     }
 
-    handleInput = name => e => {
-        this.setState({
-            ...this.state, [name]: e.target.checked
-        });
-
-        if(this.state.checkedA===true)
-        this.setState({
-            ...this.state, Vegetariana :'Vegetariana'
-        });
-        else if(this.state.checkedB===true)
-        this.setState({
-            ...this.state, Gluten :'Gluten'
-        });
-        else if(this.state.checkedC===true)
-        this.setState({
-            ...this.state, Mariscos :'Mariscos'
-        });
-        else if(this.state.checkedD===true)
-        this.setState({
-            ...this.state, Lacteos :'Lacteos'
-        });
-        else if(this.state.checkedD===true)
-        this.setState({
-            ...this.state, FrutosSecos :'Frutos Secos'
-        });
-
-        this.setState({
-            ...this.state, restrictions: this.state.Vegetariana + ', ' + this.state.Gluten + ', ' + this.state.Mariscos + ', ' + this.state.Lacteos + ', ' + this.state.FrutosSecos
-        });
-        console.log(this.state.restrictions)
+    constructor(props) {
+        super(props);
+        this.state= {
+            restrictions: '',
+            switched: props.checked,
+            Vegetariana: 'Vegetariana',
+            Gluten: 'Gluten',
+            Mariscos: 'Mariscos',
+            Lacteos: 'Lacteos',
+            FrutosSecos: 'Frutos Secos'
+        };
+    }
+   
+    handleChange = (event, switched) => {
+        this.setState({switched: !this.state.switched})
+        if (switched === true) {
+            this.setState({
+                restrictions: this.restrictions + ', ' + event.target.value
+            });
+        }
     }
 
     handleSubmit = (e) => {
@@ -91,7 +73,8 @@ class EventStep5 extends React.Component {
     }
     render() {
         console.log(this.props.myEvent)
-        const GreenCheckbox = withStyles({
+
+          const GreenCheckbox = withStyles({
             root: {
                 color: '#c9e86a',
                 '&$checked': {
@@ -112,8 +95,9 @@ class EventStep5 extends React.Component {
                         <FormControlLabel
                             control={
                                 <GreenCheckbox
-                                    checked={this.state.checkedA}
-                                    onChange={this.handleInput('checkedA')}
+                                    {...this.props} 
+                                    checked={this.state.switched}
+                                    onChange={this.handleChange}
                                     value={this.state.Vegetariana}
                                 />
                             }
@@ -122,8 +106,9 @@ class EventStep5 extends React.Component {
                         <FormControlLabel
                             control={
                                 <GreenCheckbox
-                                    checked={this.state.checkedB}
-                                    onChange={this.handleInput('checkedB')}
+                                    {...this.props} 
+                                    checked={this.state.switched}
+                                    onChange={this.handleChange}
                                     value={this.state.Gluten}
                                 />
                             }
@@ -132,8 +117,9 @@ class EventStep5 extends React.Component {
                         <FormControlLabel
                             control={
                                 <GreenCheckbox
-                                    checked={this.state.checkedC}
-                                    onChange={this.handleInput('checkedC')}
+                                    {...this.props} 
+                                    checked={this.state.switched}
+                                    onChange={this.handleChange}
                                     value={this.state.Mariscos}
                                 />
                             }
@@ -142,8 +128,9 @@ class EventStep5 extends React.Component {
                         <FormControlLabel
                             control={
                                 <GreenCheckbox
-                                    checked={this.state.checkedD}
-                                    onChange={this.handleInput('checkedD')}
+                                    {...this.props} 
+                                    checked={this.state.switched}
+                                    onChange={this.handleChange}
                                     value={this.state.Lacteos}
                                 />
                             }
@@ -152,8 +139,9 @@ class EventStep5 extends React.Component {
                         <FormControlLabel
                             control={
                                 <GreenCheckbox
-                                    checked={this.state.checkedE}
-                                    onChange={this.handleInput('checkedE')}
+                                    {...this.props} 
+                                    checked={this.state.switched}
+                                    onChange={this.handleChange}
                                     value={this.state.FrutosSecos}
                                 />
                             }

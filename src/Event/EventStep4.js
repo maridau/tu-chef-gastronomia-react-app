@@ -48,16 +48,13 @@ class EventStep4 extends React.Component {
         this.state = {
             selectedDate: Date()
         };
-
     }
 
     handleDateChange = (date) => {
         this.setState({
             selectedDate: date
         });
-        console.log(this.state.selectedDate + 'handle Change')
     }
-
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -65,10 +62,7 @@ class EventStep4 extends React.Component {
         this.setState({
             selectedDate: Date()
         });
-        console.log(this.state.selectedDate + 'guardó o no guardó?')
     }
-    
-    
 
     render() {
         console.log(this.props.myEvent)
@@ -86,11 +80,7 @@ class EventStep4 extends React.Component {
                             className={this.props.classes.datePicker}
                             label="Seleccionar fecha"
                             name='date'
-                            //format='03/25/2015'
                             value={this.state.selectedDate}
-                            //InputLabelProps={{
-                              //  shrink: true,
-                              //}}
                             onChange={this.handleDateChange}
                             animateYearScrolling
                         />

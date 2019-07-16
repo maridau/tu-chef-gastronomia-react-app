@@ -9,7 +9,6 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Avatar from "@material-ui/core/Avatar";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -54,7 +53,7 @@ const styles = theme => ({
         display: "inline-block",
         border: "2px solid #96be1e",
         "&:not(:first-of-type)": {
-            marginLeft: -theme.spacing.unit
+            marginLeft: theme.spacing(1),
         }
     }
 });
@@ -68,20 +67,7 @@ class EventStep6 extends React.Component {
         };
     }
 
-    handleInput = (e) => {
-        this.setState({
-            newChef: e.target.value
-        });
-        console.log(e.target.value)
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.changeEventData('chef', this.state.newChef);
-        this.setState({
-            newChef: 0,
-        });
-    }
+c
 
     render() {
         const { classes } = this.props;
@@ -105,13 +91,10 @@ class EventStep6 extends React.Component {
                                 id: 'nuevoChef',
                             }}
                         >
-
                             {this.props.chef.map(chef => (
                                 <MenuItem key={chef.id} value={chef.id}>
                                     <ListItem>
-                                        <ListItemAvatar>
                                             <Avatar className={this.props.classes.bigAvatar} src={chef.picture} />
-                                        </ListItemAvatar>
                                         <ListItemText primary='Chef' secondary={chef.name} />
                                     </ListItem>
                                 </MenuItem>

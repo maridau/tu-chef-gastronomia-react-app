@@ -14,10 +14,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
 const styles = theme => ({
-    palette: {
-        primary: '#96be1e', //verde
-        secondary: '#323c46', //gris fuerte
-    },
     card: {
         maxWidth: 400,
         margin: theme.spacing.unit * 3,
@@ -62,9 +58,6 @@ class EventResume extends React.Component {
         };
     }
     render() {
-        console.log(this.props.myEvent)
-        console.log(this.props.eventChef)
-
         const { classes } = this.props;
         const newEvent = this.props.myEvent;
 
@@ -102,26 +95,26 @@ class EventResume extends React.Component {
                             <ListItem>
                                 <ListItemText primary='Fecha' secondary={newEvent.date.toString()} />
                             </ListItem>
-                            
-                        
+                            <ListItem>
+                                <ListItemText primary='Email' secondary={newEvent.contactName} />
+                            </ListItem>
+
+
                         </List>
 
 
                         <Divider className={classes.divider} light />
                         <List>
-                            {this.props.eventChef.filter(item => item.id===newEvent.chef)
+                            {this.props.eventChef.filter(item => item.id === newEvent.chef)
                                 //.map((animalItem, i) => {
                                 .map(item => (
-                                <ListItem>
-                                    <ListItemAvatar>
-                                        <Avatar className={classes.bigAvatar} key={item.id} src={item.picture} />
-                                    </ListItemAvatar>
-                                    <ListItemText primary="Chef" secondary={item.name} />
-                                </ListItem>
-                            ))}
-
-                            
-
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            <Avatar className={classes.bigAvatar} key={item.id} src={item.picture} />
+                                        </ListItemAvatar>
+                                        <ListItemText primary="Chef" secondary={item.name} />
+                                    </ListItem>
+                                ))}
                         </List>
                     </CardContent>
                 </Card>

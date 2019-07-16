@@ -66,6 +66,7 @@ class EventRegister extends React.Component {
             ¿Qué vas a festejar?
           </Typography>
           <TextField
+            required
             name="eventName"
             label="¡Contanos!"
             className={this.props.classes.textField}

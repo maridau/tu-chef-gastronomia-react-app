@@ -2,9 +2,9 @@ import React from 'react';
 import './event.css';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
 
 const styles = theme => ({
     container: {
@@ -29,8 +29,38 @@ const styles = theme => ({
     button: {
         margin: theme.spacing(1),
     },
+    slider: {
+        marginTop: 40,
+        margin: theme.spacing(1),
+    },
 });
 
+const marks = [
+    {
+        value: 5,
+        label: '',
+    },
+    {
+        value: 10,
+        label: '',
+    },
+    {
+        value: 20,
+        label: '',
+    },
+    {
+        value: 30,
+        label: '',
+    },
+    {
+        value: 50,
+        label: '',
+    },
+];
+
+ function valuetext(value) {
+    return `${value}s`;
+    }
 
 
 class EventStep1 extends React.Component {
@@ -43,7 +73,7 @@ class EventStep1 extends React.Component {
 
     handleInput = e => {
         this.setState({
-            newEventGuests: e.target.value
+            newEventGuests: e.target.getAriaValueText
         });
         console.log(this.state.newEventGuests)
     }
@@ -51,7 +81,7 @@ class EventStep1 extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.changeEventData('guests', this.state.newEventGuests);
+        this.props.changeEventData('guests', this.state.value);
         this.setState({
             newEventGuests: '',
         });
@@ -59,20 +89,22 @@ class EventStep1 extends React.Component {
 
     render() {
         console.log(this.props.myEvent)
+
         return (
             <form className={this.props.classes.container} noValidate autoComplete="off">
                 <Paper className={this.props.classes.paper}>
                     <Typography variant="h5">
-                        ¿Cuántas personas van a ser?
+                       Cantidad de invitados:
                     </Typography>
-
-                    <TextField
-                        name="guests"
-                        label="Invitados"
-                        className={this.props.classes.textField}
-                        value={this.state.newEventGuests}
+                    <Slider
                         onChange={this.handleInput}
-                        margin="normal"
+                        className={this.props.classes.slider}
+                        defaultValue={50}
+                        getAriaValueText={valuetext}
+                        aria-labelledby="discrete-slider-always"
+                        step={5}
+                        marks={marks}
+                        valueLabelDisplay="on"
                     />
                     <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.handleSubmit}>
                         Guardar
