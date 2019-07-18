@@ -58,34 +58,38 @@ const marks = [
     },
 ];
 
- function valuetext(value) {
-    return `${value}s`;
-    }
-
-
 class EventStep1 extends React.Component {
     constructor() {
         super();
         this.state = {
-            newEventGuests: ''
+            newEventGuests: 1,
+            initialPrice:200,
+            newPrice:1
         };
     }
 
-    handleInput = e => {
+    handleInput = (e) => {
         this.setState({
-            newEventGuests: e.target.getAriaValueText
+            newEventGuests: parseInt(e.target.innerText),
         });
-        console.log(this.state.newEventGuests)
+        this.handlePrice();
+        console.log(e.target.innerText)
     }
 
+    handlePrice = () => {
+        this.setState({
+           newPrice: this.state.initialPrice*this.state.newEventGuests
+        });
+        this.props.changePrice(this.state.newPrice)
+     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.changeEventData('guests', this.state.value);
+        this.props.changeEventData('guests', this.state.newEventGuests);
         this.setState({
-            newEventGuests: '',
+            newEventGuests: 0
         });
-    }
+     }
 
     render() {
         console.log(this.props.myEvent)
@@ -100,7 +104,6 @@ class EventStep1 extends React.Component {
                         onChange={this.handleInput}
                         className={this.props.classes.slider}
                         defaultValue={50}
-                        getAriaValueText={valuetext}
                         aria-labelledby="discrete-slider-always"
                         step={5}
                         marks={marks}

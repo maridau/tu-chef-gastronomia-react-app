@@ -86,7 +86,7 @@ class EventStep4 extends React.Component {
                         />
                         </MuiPickersUtilsProvider>
 
-                    <FormHelperText>¡Sorprendé a tus invitados con algo diferente!</FormHelperText>
+                        <FormHelperText>Precio estimado por {this.props.myEvent.guests} invitados: $ {this.props.myEvent.price}</FormHelperText>
                     <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.handleSubmit}>
                         Guardar
                     </Button>

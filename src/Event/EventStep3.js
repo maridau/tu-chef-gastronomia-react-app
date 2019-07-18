@@ -51,9 +51,24 @@ class EventStep3 extends React.Component {
         this.setState({
             newFoodType: e.target.value
         });
+        this.handlePrice();
         console.log(this.state.newFoodType)
     }
 
+    handlePrice = e => {
+        if (this.state.newFoodType==='mediterranea' || this.state.newFoodType==='francesa'){
+            const newPrice = 1.5*this.props.myEvent.price
+            this.props.changePrice(newPrice);
+        }
+        else if(this.state.newFoodType==='italiana' || this.state.newFoodType==='japonesa'){
+            const newPrice = 1.2*this.props.myEvent.price
+            this.props.changePrice(newPrice);
+        }
+        else if(this.state.newFoodType==='mexicana' || this.state.newFoodType==='sorpresa'){
+            const newPrice = 1.2*this.props.myEvent.price
+            this.props.changePrice(newPrice);
+        }
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -97,7 +112,7 @@ class EventStep3 extends React.Component {
                             <FormControlLabel value="sorpresa" control={<GreenRadioButton />} label="¡Me dejo sorprender!" />
                             
                         </RadioGroup>
-                        <FormHelperText>¡Sorprendé a tus invitados con algo diferente!</FormHelperText>
+                        <FormHelperText>Precio estimado por {this.props.myEvent.guests} {this.props.myEvent.mealType}, invitados: $ {this.props.myEvent.price}</FormHelperText>
                     <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.handleSubmit}>
                         Guardar
                     </Button>

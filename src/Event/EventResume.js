@@ -28,16 +28,19 @@ const styles = theme => ({
     },
     content: {
         textAlign: "left",
-        padding: theme.spacing.unit * 3
+        padding: theme.spacing(3)
     },
     divider: {
-        margin: `${theme.spacing.unit * 3}px 0`
+        margin: theme.spacing(3)
     },
     heading: {
         fontWeight: "bold"
     },
     subheading: {
         lineHeight: 1.8
+    },
+    subsubheading: {
+        lineHeight: 0.5
     },
     bigAvatar: {
         margin: 3,
@@ -60,7 +63,7 @@ class EventResume extends React.Component {
     render() {
         const { classes } = this.props;
         const newEvent = this.props.myEvent;
-
+        const contacto = newEvent.contact.name + ' | ' + newEvent.contact.email  + ' | ' + newEvent.contact.phone; 
         return (
             <div>
                 <Card className={classes.card}>
@@ -96,17 +99,17 @@ class EventResume extends React.Component {
                                 <ListItemText primary='Fecha' secondary={newEvent.date.toString()} />
                             </ListItem>
                             <ListItem>
-                                <ListItemText primary='Email' secondary={newEvent.contactName} />
+                                <ListItemText primary='Precio estiamdo en $U' secondary={newEvent.price} />
                             </ListItem>
-
-
+                            <ListItem>
+                                <ListItemText primary='Contacto' secondary={contacto}/>
+                            </ListItem>
                         </List>
 
 
                         <Divider className={classes.divider} light />
                         <List>
                             {this.props.eventChef.filter(item => item.id === newEvent.chef)
-                                //.map((animalItem, i) => {
                                 .map(item => (
                                     <ListItem>
                                         <ListItemAvatar>

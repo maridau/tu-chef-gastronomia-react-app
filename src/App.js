@@ -25,14 +25,24 @@ class App extends React.Component {
 
       myEvent: {
         eventName: '',
-        guests: '',
+        guests: 0,
         mealType: '',
         foodType: '',
         date: '',
-        restrictions: '',
+        restrictions: {
+          Vegetariana: false,
+          Gluten: false,
+          Mariscos: false,
+          Lacteos: false,
+          FrutosSecos: false
+        },
         chef: 1,
-        price: 200,
-          contactEmail: '',
+        price: 0,
+        contact: {
+          name: '',
+          email: '',
+          phone: ''
+        },
       },
 
       chef: [
@@ -54,19 +64,38 @@ class App extends React.Component {
     })
   }
 
+  changePrice = (value) => {
+    this.setState({
+      myEvent: {
+        ...this.state.myEvent, 
+        price: value
+      }
+    })
+  }
+
 
   onClearEvent = () => {
     this.setState({ 
       myEvent: {
       eventName: '',
-      guests: '',
+      guests: 0,
       mealType: '',
       foodType: '',
       date: '',
-      restrictions: '',
+      restrictions: {
+        Vegetariana: false,
+        Gluten: false,
+        Mariscos: false,
+        Lacteos: false,
+        FrutosSecos: false
+      },
       chef: 1,
-      price: 200,
-      contactEmail: '',
+      price: 0,
+      contact: {
+        name: '',
+        email: '',
+        phone: ''
+      },
     },
     } );
   };
@@ -158,6 +187,7 @@ class App extends React.Component {
     if (this.state.section === 31) {
       return <EventStep1
         myEvent={this.state.myEvent}
+        changePrice={this.changePrice}
         changeEventData={this.changeEventData}
         goToEventStep2={this.goToEventStep2}
       />;
@@ -165,6 +195,8 @@ class App extends React.Component {
     if (this.state.section === 32) {
       return <EventStep2
         myEvent={this.state.myEvent}
+        changePrice={this.changePrice}
+        newPrice={this.state.myEvent.price}
         changeEventData={this.changeEventData}
         goToEventStep3={this.goToEventStep3}
       />;
@@ -172,6 +204,7 @@ class App extends React.Component {
     if (this.state.section === 33) {
       return <EventStep3
         myEvent={this.state.myEvent}
+        changePrice={this.changePrice}
         changeEventData={this.changeEventData}
         goToEventStep4={this.goToEventStep4}
       />;
@@ -179,14 +212,15 @@ class App extends React.Component {
     if (this.state.section === 34) {
       return <EventStep4
         myEvent={this.state.myEvent}
+        changePrice={this.changePrice}
         changeEventData={this.changeEventData}
         goToEventStep5={this.goToEventStep5}
-        goToEventResume={this.goToEventResume}
       />;
     }
     if (this.state.section === 35) {
       return <EventStep5
         myEvent={this.state.myEvent}
+        changePrice={this.changePrice}
         changeEventData={this.changeEventData}
         goToEventStep6={this.goToEventStep6}
       />;
@@ -195,6 +229,7 @@ class App extends React.Component {
     if (this.state.section === 36) {
       return <EventStep6
         myEvent={this.state.myEvent}
+        changePrice={this.changePrice}
         chef={this.state.chef}
         changeEventData={this.changeEventData}
         goToEventStep7={this.goToEventStep7}
@@ -204,6 +239,7 @@ class App extends React.Component {
     if (this.state.section === 37) {
       return <EventStep7
         myEvent={this.state.myEvent}
+        changePrice={this.changePrice}
         changeEventData={this.changeEventData}
         goToEventResume={this.goToEventResume}
       />;
@@ -212,6 +248,7 @@ class App extends React.Component {
     if (this.state.section === 38) {
       return <EventResume
       myEvent={this.state.myEvent}
+      changePrice={this.changePrice}
       eventChef={this.state.chef}
       changeEventData={this.changeEventData}
       />;

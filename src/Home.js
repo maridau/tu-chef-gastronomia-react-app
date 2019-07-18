@@ -37,7 +37,9 @@ class Home extends React.Component {
                        Una experiencia diferente 
                        en la comodidad de tu casa
                         o en el lugar que hayas elegido
-                         para tu evento.
+                         para tu evento.<br></br>
+                         Mediante estas preguntas recogeremos la información necesaria
+                         para sugerirte las mejores opciones para tu evento.
                     </Typography>
                     <Button variant="contained" color="primary"  className={this.props.classes.button} onClick={this.props.goToEventRegister}>
                         Comenzar

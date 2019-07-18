@@ -41,17 +41,16 @@ class EventStep2 extends React.Component {
     constructor() {
         super();
         this.state = {
-            newMealType:''
+            newMealType: '',
         };
+        
     }
-
     handleInput = e => {
         this.setState({
             newMealType: e.target.value
         });
-        console.log(this.state.newMealType)
+        console.log(e.target.value)
     }
-
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -71,7 +70,7 @@ class EventStep2 extends React.Component {
                 },
             },
             checked: {},
-            })(props => <Radio color="default" {...props} />);
+        })(props => <Radio color="default" {...props} />);
 
         return (
             <form className={this.props.classes.container} noValidate autoComplete="off">
@@ -95,7 +94,7 @@ class EventStep2 extends React.Component {
 
 
                     </RadioGroup>
-                    <FormHelperText>¡Salí de la rutina y festejá distinto!</FormHelperText>
+                    <FormHelperText>Precio estimado por {this.props.myEvent.guests} invitados: $ {this.props.myEvent.price}</FormHelperText>
 
                     <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.handleSubmit}>
                         Guardar

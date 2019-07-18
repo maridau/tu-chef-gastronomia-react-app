@@ -66,8 +66,21 @@ class EventStep6 extends React.Component {
             newChef: 1
         };
     }
+    handleInput = e => {
+        this.setState({
+            newChef: e.target.value
+        });
+        console.log(this.state.newChef)
+    }
 
-c
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.changeEventData('chef', this.state.newChef);
+        this.setState({
+            newChef: 1,
+        });
+    }
 
     render() {
         const { classes } = this.props;
@@ -105,7 +118,7 @@ c
                         </Select>
                     </FormControl>
 
-                    <FormHelperText>¡Sorprendé a tus invitados con algo diferente!</FormHelperText>
+                    <FormHelperText>Precio estimado por {this.props.myEvent.guests} invitados: $ {this.props.myEvent.price}</FormHelperText>
                     <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.handleSubmit}>
                         Guardar
                     </Button>
