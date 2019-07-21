@@ -16,6 +16,7 @@ import EventStep5 from './Event/EventStep5.js';
 import EventStep6 from './Event/EventStep6.js';
 import EventStep7 from './Event/EventStep7.js';
 import EventResume from './Event/EventResume.js';
+//import AppBar from './AppBar.js';
 
 class App extends React.Component {
   constructor() {
@@ -269,12 +270,18 @@ class App extends React.Component {
     return (
       <div>
 
-        <Header
+         <Header
           goToHome={this.goToHome}
           goToEventRegister={this.goToEventRegister}
           goToRegisterChef={this.goToRegisterChef}
           goToContactUs={this.goToContactUs}
-        />
+        /> 
+     {/*    <AppBar
+        goToHome={this.goToHome}
+        goToEventRegister={this.goToEventRegister}
+        goToRegisterChef={this.goToRegisterChef}
+        goToContactUs={this.goToContactUs}
+        /> */}
         <React.Fragment>
           <CssBaseline />
           <Container maxWidth="sm" style={{ height: '100vh' }} >

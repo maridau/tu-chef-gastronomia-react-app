@@ -73,7 +73,7 @@ class EventStep1 extends React.Component {
             newEventGuests: parseInt(e.target.innerText),
         });
         this.handlePrice();
-        console.log(e.target.innerText)
+        console.log(e)
     }
 
     handlePrice = () => {

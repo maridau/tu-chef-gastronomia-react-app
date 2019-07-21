@@ -4,18 +4,21 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
+
 const useStyles = makeStyles(theme => ({
+  palette: {
+    primary: '#96be1e',
+    secondary: '#323c46',
+  },
   grow: {
     flexGrow: 1,
   },
@@ -42,15 +45,6 @@ const useStyles = makeStyles(theme => ({
       marginLeft: theme.spacing(3),
       width: 'auto',
     },
-  },
-  searchIcon: {
-    width: theme.spacing(7),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   inputRoot: {
     color: 'inherit',
@@ -113,8 +107,8 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Home</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Eventos</MenuItem>
     </Menu>
   );
 
@@ -163,51 +157,35 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
+        <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleMobileMenuClose}
+      >
+        <MenuItem onClick={handleMobileMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={handleMobileMenuClose}>My account</MenuItem>
+        <MenuItem onClick={handleMobileMenuClose}>Logout</MenuItem>
+      </Menu>
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
-            aria-label="Open drawer"
+            aria-label="Open drawer"b
           >
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+          <img src="assets/Logo-TuChef-08.png" alt="Tu Chef" title="Tu Chef" height="100px"></img>
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'Search' }}
-            />
-          </div>
+          
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="Show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
+            <IconButton aria-label="" color="inherit">
+              <Badge badgeContent={0} color="secondary">
                 <MailIcon />
               </Badge>
-            </IconButton>
-            <IconButton aria-label="Show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="Account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
